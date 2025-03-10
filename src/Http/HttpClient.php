@@ -5,15 +5,15 @@ namespace NanoTel\Http;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\RequestException;
 use NanoTel\Exceptions\Telegram\RequestError;
-use NanoTel\Http\HttpResponse;
+use Psr\Http\Message\ResponseInterface;
 
 class HttpClient
 {
-    private ?GuzzleClient $client;
+    private static ?GuzzleClient $client;
 
     public function __construct(string $baseUri, int $timeOut = 10, int $connectTimeOut = 5)
     {
-        $this->client = new GuzzleClient([
+        self::$client = new GuzzleClient([
             'base_uri'        => rtrim($baseUri, '/') . '/',
             'timeout'         => $timeOut,
             'connect_timeout' => $connectTimeOut,
@@ -21,14 +21,14 @@ class HttpClient
         ]);
     }
 
-    public function request(string $method, array $options = []): HttpResponse
+    public static function request(string $method, array $options = []): ResponseInterface
     {
         try {
-            $response = $this->client->post($method, ['json' => $options]);
+            $response = self::$client->post($method, ['json' => $options]);
         } catch (RequestException $e) {
             throw new RequestError("HTTP request failed: " . $e->getMessage(), $e->getCode(), $e);
         }
 
-        return new HttpResponse($response);
+        return $response;
     }
 }

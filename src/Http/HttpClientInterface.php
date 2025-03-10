@@ -1,9 +1,10 @@
 <?php
 
 namespace NanoTel\Http;
-use NanoTel\Http\HttpResponse;
+
+use Psr\Http\Message\ResponseInterface;
 
 interface HttpClientInterface
 {
-    public static function request(string $method, array $options = []): HttpResponse;
+    public static function request(string $method, array $options = []): ResponseInterface;
 }
