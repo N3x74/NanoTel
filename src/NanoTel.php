@@ -4,6 +4,7 @@ namespace NanoTel;
 
 use InvalidArgumentException;
 use SensitiveParameter;
+use NanoTel\Request\Request;
 use NanoTel\Http\HttpClient;
 
 class NanoTel {
@@ -22,7 +23,12 @@ class NanoTel {
         $this->client = new HttpClient($this->baseUrl);
     }
 
-    public function getBotToken(): string {
+    public function getBotToken(): ?string {
         return $this->botToken;
+    }
+
+    public function __call(string $name, array $args = [])
+    {
+        return Request::{$name}(...$args);
     }
 }
