@@ -3,9 +3,9 @@
 namespace NanoTel;
 
 use InvalidArgumentException;
-use SensitiveParameter;
-use NanoTel\Request\Request;
 use NanoTel\Http\HttpClient;
+use NanoTel\Request\Request;
+use SensitiveParameter;
 
 class NanoTel {
     public string $baseUrl = "https://api.telegram.org/bot";
