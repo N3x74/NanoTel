@@ -1,0 +1,23 @@
+{
+    "name": "n3x74/nanotel",
+    "description": "A powerful and simple library to interact with the Telegram API",
+    "type": "library",
+    "require": {
+        "php": ">=8.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "license": "BSD-3-Clause",
+    "autoload": {
+        "psr-4": {
+            "NanoTel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "N3x74",
+            "email": "4.ho3ein@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
